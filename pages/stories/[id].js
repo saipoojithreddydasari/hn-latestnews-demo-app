@@ -1,7 +1,5 @@
 import { getItem, getAllComments, getLatestStoryIDs } from "../../lib/api";
 import Link from "next/link"
-import Head from 'next/head'
-import Image from 'next/image'
 
 // Indentation for comments with different level
 const levelIndent = {
@@ -19,34 +17,50 @@ const levelIndent = {
 export default function Story({ story, comments }) {
     return (
         <div>
-            <h1 className="text-6xl font-bold">
+        <div>
+            <button
+                className="h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">
+                <Link href="/"> Back to Home</Link>
+            </button>
+        </div>
+        <div>
+            <h1 className="py-4 text-6xl font-bold">
                 {story.title}
             </h1>
-
             {
-                story.url && <Link className="text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out mb-4" href={story.url}>
-                        {story.url}
-                </Link>
+                story.url &&
+                <a className="py-4 text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out mb-4" href={story.url}>
+                    {story.url}
+
+                </a>
+            }
+            {
+                story.text && <div
+                    className="px-2 py-4 rounded-lg border border-gray-400 flex-wrap text-start items-center justify-center sm:w-full">
+                    <br></br>
+                    <p className="font-semibold">Content:</p>
+                    <p> {story.text} </p>
+                </div>
             }
 
-            {
-                story.text && <div className="border border-gray-200 text-gray-900"><br></br>
-                    {story.text}</div>
-            }
+            <div className="px-4 mt-6 flex max-w-4xl flex-wrap text-start items-center justify-center sm:w-full">
 
-            <div className="mt-6 flex max-w-4xl flex-wrap text-start items-center justify-around sm:w-full">
-                < ul className="bg-white rounded-lg border border-gray-200 text-gray-900" >
-                    {
-                        comments.map(comment => (
-                            <li key={comment.id} className={`${levelIndent[comment.level]} py-2 border-b border-gray-200 w-full`} >
-                                <div dangerouslySetInnerHTML={{ __html: comment.text }}></div>
-                            </li>
-                        ))
-                    }
-                </ul >
+                <ul className="px-4 bg-white rounded-lg border border-gray-400 text-black-900" >
+                    <p className="font-semibold"> Comments: </p>
+                    {comments.map(comment => (
+                        <li key={comment.id} className={`${levelIndent[comment.level]} py-2 border-b border-gray-200 w-full `}>
+                            <div className="relative focus-within:ring-2 focus-within:ring-indigo-500 divide-y divide-gray-400 ">
+                                <h3 className="text-sm font-semibold text-gray-800">
+                                    {comment.by}
+                                </h3>
+                                <p className="mt-1 text-sm text-gray-900 line-clamp-2">{comment.text}</p>
+                            </div>
+                        </li>
+                    ))}
+                </ul>
             </div>
         </div >
-
+        </div>
 
     )
 }

@@ -1,9 +1,9 @@
 import Head from 'next/head'
-import Image from 'next/image'
+import styles from "../styles/Layout.module.css"
 
 export default function Layout({ children }) {
     return (
-        <div className="flex min-h-screen flex-col items-center justify-center">
+        <div className={styles.container}>
             <Head>
                 <title>Hacker News Latest Stories App</title>
                 <link rel="icon" href="/HackerNewsApp/hn-app/public/favicon.ico" />
@@ -12,8 +12,6 @@ export default function Layout({ children }) {
             <main className="flex w-full flex-1 flex-col items-center justify-center px-40 text-center">
                 {children}
             </main>
-
         </div>
-
     )
 }
