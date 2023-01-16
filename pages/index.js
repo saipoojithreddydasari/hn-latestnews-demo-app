@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import {getLatestStories} from "../lib/api";
 
 
@@ -23,7 +22,7 @@ function HomePage({ stories }) {
                               <div>
                                   <a
                                       href={`/stories/${story.id}`}
-                                      className="bg-blue-300 items-center rounded-full border border-gray-300 bg-white px-2.5 py-0.5 text-sm font-medium leading-5 text-gray-700 shadow-sm hover:bg-gray-50"
+                                      className="items-center rounded-full border border-gray-300 bg-white px-2.5 py-0.5 text-sm font-medium leading-5 bg-blue-200 text-gray-700 shadow-sm hover:bg-gray-50"
                                   >
                                       View
                                   </a>
